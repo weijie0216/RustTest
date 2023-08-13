@@ -11,7 +11,7 @@ async function load_model() {
     // It's possible to load the model locally or from a repo
     // You can choose whatever IP and PORT you want in the "http://127.0.0.1:8080/model.json" just set it before in your https server
     // const model = await loadGraphModel("http://192.168.0.168:8080/model.json");
-    const model = await loadGraphModel("https://github.com/weijie0216/TestRust/master/models/best_web_model/model.json");
+    const model = await loadGraphModel("https://raw.githubusercontent.com/weijie0216/RustTest/main/models/best_web_model/model.json");
     return model;
   }
 
@@ -64,7 +64,7 @@ class App extends React.Component {
 
     detectFrame = (video, model) => {
         tf.engine().startScope();
-        video = video.reshape([1,480,640,3])
+        // video = video.reshape([1,480,640,3])
         model.executeAsync(this.process_input(video)).then(predictions => {
         this.renderPredictions(predictions, video);
         requestAnimationFrame(() => {
